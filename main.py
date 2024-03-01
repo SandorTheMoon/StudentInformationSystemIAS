@@ -43,18 +43,58 @@ root.geometry("600x400")
 label_programTitle = tk.Label(root, text="Student Information System", font=("Helvetica", 16))
 label_programTitle.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
 
-def inputData():
-    root.destroy()
-    label = tk.Label(root, text="Student ID:")
-    label.pack(pady=10)
-    label = tk.Label(root, text="First Name:")
-    label.pack(pady=10)
-    label = tk.Label(root, text="Middle Name:")
-    label.pack(pady=10)
-    label = tk.Label(root, text="Section:")
-    label.pack(pady=10)
-    label = tk.Label(root, text="Address:")
-    label.pack(pady=10)
+def showMainWindow():
+    root.deiconify()
+
+def popoutWindow():
+
+    def closeCurrentWindow():
+        popout_window.destroy()
+        showMainWindow()
+
+    root.withdraw()
+    popout_window = tk.Toplevel(root)
+    popout_window.title("Pop-out Window")
+    popout_window.geometry("600x400")
+
+    label_studentID = tk.Label(popout_window, text="Student ID:")
+    label_studentID.grid(row=0, column=0, padx=10, pady=10)
+    label_studentID.place(relx=0.5, rely=0.075, anchor=tk.CENTER)
+    entry = tk.Text(popout_window, width=30, height=2)
+    entry.grid(row=0, column=1, padx=10, pady=10)
+    entry.place(relx=0.5, rely=0.15, anchor=tk.CENTER)
+
+    label_firstName = tk.Label(popout_window, text="First Name:")
+    label_firstName.grid(row=1, column=0, padx=10, pady=10)
+    label_firstName.place(relx=0.5, rely=0.225, anchor=tk.CENTER)
+    entry = tk.Text(popout_window, width=30, height=2)
+    entry.grid(row=1, column=1, padx=10, pady=10)
+    entry.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+    label_middleName = tk.Label(popout_window, text="Middle Name:")
+    label_middleName.grid(row=2, column=0, padx=10, pady=10)
+    label_middleName.place(relx=0.5, rely=0.375, anchor=tk.CENTER)
+    entry = tk.Text(popout_window, width=30, height=2)
+    entry.grid(row=2, column=1, padx=10, pady=10)
+    entry.place(relx=0.5, rely=0.45, anchor=tk.CENTER)
+
+    label_section = tk.Label(popout_window, text="Section:")
+    label_section.grid(row=3, column=0, padx=10, pady=10)
+    label_section.place(relx=0.5, rely=0.525, anchor=tk.CENTER)
+    entry = tk.Text(popout_window, width=30, height=2)
+    entry.grid(row=3, column=1, padx=10, pady=10)
+    entry.place(relx=0.5, rely=0.6, anchor=tk.CENTER)
+
+    label_address = tk.Label(popout_window, text="Address:")
+    label_address.grid(row=4, column=0, padx=10, pady=10)
+    label_address.place(relx=0.5, rely=0.675, anchor=tk.CENTER)
+    entry = tk.Text(popout_window, width=30, height=2)
+    entry.grid(row=4, column=1, padx=10, pady=10)
+    entry.place(relx=0.5, rely=0.75, anchor=tk.CENTER)
+
+    submit_button = tk.Button(popout_window, text="Submit", command=closeCurrentWindow, width=20, height=2)
+    submit_button.grid(row=6, column=0, columnspan=2, padx=5, pady=5)
+    submit_button.place(relx=0.5, rely=0.9, anchor=tk.CENTER)
 
 def getStudentID():
     root = tk.Tk()
@@ -68,7 +108,7 @@ def getStudentID():
         messagebox.showinfo("Error", "Invalid Student ID!")
         root.mainloop()
 
-button_inputData = tk.Button(root, text="Input Data", command=inputData, width=20, height=2)
+button_inputData = tk.Button(root, text="Input Data", command=popoutWindow, width=20, height=2)
 button_inputData.place(relx=0.5, rely=0.35, anchor=tk.CENTER)
 
 button_viewData= tk.Button(root, text="View Data", command=getStudentID, width=20, height=2)
