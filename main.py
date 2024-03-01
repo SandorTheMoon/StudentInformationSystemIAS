@@ -4,7 +4,6 @@
 # Deang, April Joy L.
 # Espero, Airysh Xander M.
 
-
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 import os
