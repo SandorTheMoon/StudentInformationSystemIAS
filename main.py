@@ -74,6 +74,12 @@ button_inputData.place(relx=0.5, rely=0.35, anchor=tk.CENTER)
 button_viewData= tk.Button(root, text="View Data", command=getStudentID, width=20, height=2)
 button_viewData.place(relx=0.5, rely=0.50, anchor=tk.CENTER)
 
+def exit():
+    root.destroy()
+
+button_viewData= tk.Button(root, text="Exit", command=exit, width=20, height=2)
+button_viewData.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
+
 root.mainloop()
 
 #--- CODE DATI: ---
