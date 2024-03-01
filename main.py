@@ -44,7 +44,6 @@ label_programTitle = tk.Label(root, text="Student Information System", font=("He
 label_programTitle.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
 
 def inputData():
-    root.destroy()
     label = tk.Label(root, text="Student ID:")
     label.pack(pady=10)
     label = tk.Label(root, text="First Name:")
