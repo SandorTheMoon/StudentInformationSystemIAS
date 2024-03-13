@@ -133,10 +133,121 @@ button_inputData.place(relx=0.5, rely=0.35, anchor=tk.CENTER)
 button_viewData= tk.Button(root, text="View Data", command=getStudentID, width=20, height=2)
 button_viewData.place(relx=0.5, rely=0.50, anchor=tk.CENTER)
 
+# New Codes
+
+def searchStudentID(studentID):
+    with open("Students.txt", "r") as file:
+        for line in file:
+            keyValue = line.strip().split(",")
+            if keyValue[0] == encryptData(studentID):
+                return True
+        return False
+
+def updateStudentData():
+    studentID = str(input("Enter the student ID: "))
+    
+    if searchStudentID(studentID):
+        print("Please select the data that you want to modify:")
+        print("\t 1. Student ID")
+        print("\t 2. Last Name")
+        print("\t 3. First Name")
+        print("\t 4. Middle Name")
+        print("\t 5. Section")
+        print("\t 6. Address")
+        print()
+        choice = int(input("Select the number of your choice: "))
+        match (choice):
+            case 1:
+                newStudentID = str(input("Please input the new student ID: "))
+                with open("Students.txt", "r") as file:
+                    lines = file.readlines()
+                if lines:
+                    for i, line in enumerate(lines):           
+                        data = line.strip().split(',')
+                        if data[0] == encryptData(studentID):
+                            data[0] = encryptData(newStudentID)
+                            newData = data[0]
+                            lines[i] = ','.join([newData] + data[1:])  + '\n'
+                            with open("Students.txt", "w+") as file:
+                                file.writelines(lines)
+                            break
+            case 2:
+                newStudentLastName = str(input("Please input the new student last name: "))
+                with open("Students.txt", "r") as file:
+                    lines = file.readlines()
+                if lines:
+                    for i, line in enumerate(lines):
+                        data = line.strip().split(',')
+                        if data[0] == encryptData(studentID):
+                            data[1] = encryptData(newStudentLastName)
+                            lines[i] = ','.join(data) + '\n'
+                            with open("Students.txt", "w+") as file:
+                                file.writelines(lines)
+                            break
+            case 3:
+                newStudentFirstName = str(input("Please input the new student first name: "))
+                with open("Students.txt", "r") as file:
+                    lines = file.readlines()
+                if lines:
+                    for i, line in enumerate(lines):
+                        data = line.strip().split(',')
+                        if data[0] == encryptData(studentID):
+                            data[2] = encryptData(newStudentFirstName)
+                            lines[i] = ','.join(data) + '\n'
+                            with open("Students.txt", "w+") as file:
+                                file.writelines(lines)
+                            break
+            case 4:
+                newStudentMiddleName = str(input("Please input the new student middle name: "))
+                with open("Students.txt", "r") as file:
+                    lines = file.readlines()
+                if lines:
+                    for i, line in enumerate(lines):
+                        data = line.strip().split(',')
+                        if data[0] == encryptData(studentID):
+                            data[3] = encryptData(newStudentMiddleName)
+                            lines[i] = ','.join(data) + '\n'
+                            with open("Students.txt", "w+") as file:
+                                file.writelines(lines)
+                            break
+            case 5:
+                newStudentSection = str(input("Please input the new student section: "))
+                with open("Students.txt", "r") as file:
+                    lines = file.readlines()
+                if lines:
+                    for i, line in enumerate(lines):
+                        data = line.strip().split(',')
+                        if data[0] == encryptData(studentID):
+                            data[4] = encryptData(newStudentSection)
+                            lines[i] = ','.join(data) + '\n'
+                            with open("Students.txt", "w+") as file:
+                                file.writelines(lines)
+                            break
+            case 6:
+                newStudentAddress = str(input("Please input the new student address: "))
+                with open("Students.txt", "r") as file:
+                    lines = file.readlines()
+                if lines:
+                    for i, line in enumerate(lines):
+                        data = line.strip().split(',')
+                        if data[0] == encryptData(studentID):
+                            data[5] = encryptData(newStudentAddress)
+                            lines[i] = ','.join(data) + '\n'
+                            with open("Students.txt", "w+") as file:
+                                file.writelines(lines)
+                            break
+            case _:
+                print("Error!")
+    else:
+        print("The student ID does not exist in the records!")
+
+button_editData = tk.Button(root, text="Update Student Data", command=updateStudentData, width=20, height=2)
+button_editData.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
+
 def exit():
     root.destroy()
 
 button_exit = tk.Button(root, text="Exit", command=exit, width=20, height=2)
-button_exit.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
+button_exit.place(relx=0.5, rely=0.80, anchor=tk.CENTER)
 
 root.mainloop()
