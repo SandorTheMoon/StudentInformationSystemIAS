@@ -143,269 +143,298 @@ def searchStudentID(studentID):
                 return True
         return False
 
-def updateStudentData1():
-    studentID = str(input("Enter the student ID: "))
-    
-    if searchStudentID(studentID):
-        print("Please select the data that you want to modify:")
-        print("\t 1. Student ID")
-        print("\t 2. Last Name")
-        print("\t 3. First Name")
-        print("\t 4. Middle Name")
-        print("\t 5. Section")
-        print("\t 6. Address")
-        print()
-        choice = int(input("Select the number of your choice: "))
-        match (choice):
-            case 1:
-                newStudentID = str(input("Please input the new student ID: "))
-                with open("Students.txt", "r") as file:
-                    lines = file.readlines()
-                if lines:
-                    for i, line in enumerate(lines):           
-                        data = line.strip().split(',')
-                        if data[0] == encryptData(studentID):
-                            data[0] = encryptData(newStudentID)
-                            newData = data[0]
-                            lines[i] = ','.join([newData] + data[1:])  + '\n'
-                            with open("Students.txt", "w+") as file:
-                                file.writelines(lines)
-                            break
-            case 2:
-                newStudentLastName = str(input("Please input the new student last name: "))
-                with open("Students.txt", "r") as file:
-                    lines = file.readlines()
-                if lines:
-                    for i, line in enumerate(lines):
-                        data = line.strip().split(',')
-                        if data[0] == encryptData(studentID):
-                            data[1] = encryptData(newStudentLastName)
-                            lines[i] = ','.join(data) + '\n'
-                            with open("Students.txt", "w+") as file:
-                                file.writelines(lines)
-                            break
-            case 3:
-                newStudentFirstName = str(input("Please input the new student first name: "))
-                with open("Students.txt", "r") as file:
-                    lines = file.readlines()
-                if lines:
-                    for i, line in enumerate(lines):
-                        data = line.strip().split(',')
-                        if data[0] == encryptData(studentID):
-                            data[2] = encryptData(newStudentFirstName)
-                            lines[i] = ','.join(data) + '\n'
-                            with open("Students.txt", "w+") as file:
-                                file.writelines(lines)
-                            break
-            case 4:
-                newStudentMiddleName = str(input("Please input the new student middle name: "))
-                with open("Students.txt", "r") as file:
-                    lines = file.readlines()
-                if lines:
-                    for i, line in enumerate(lines):
-                        data = line.strip().split(',')
-                        if data[0] == encryptData(studentID):
-                            data[3] = encryptData(newStudentMiddleName)
-                            lines[i] = ','.join(data) + '\n'
-                            with open("Students.txt", "w+") as file:
-                                file.writelines(lines)
-                            break
-            case 5:
-                newStudentSection = str(input("Please input the new student section: "))
-                with open("Students.txt", "r") as file:
-                    lines = file.readlines()
-                if lines:
-                    for i, line in enumerate(lines):
-                        data = line.strip().split(',')
-                        if data[0] == encryptData(studentID):
-                            data[4] = encryptData(newStudentSection)
-                            lines[i] = ','.join(data) + '\n'
-                            with open("Students.txt", "w+") as file:
-                                file.writelines(lines)
-                            break
-            case 6:
-                newStudentAddress = str(input("Please input the new student address: "))
-                with open("Students.txt", "r") as file:
-                    lines = file.readlines()
-                if lines:
-                    for i, line in enumerate(lines):
-                        data = line.strip().split(',')
-                        if data[0] == encryptData(studentID):
-                            data[5] = encryptData(newStudentAddress)
-                            lines[i] = ','.join(data) + '\n'
-                            with open("Students.txt", "w+") as file:
-                                file.writelines(lines)
-                            break
-            case _:
-                print("Error!")
-    else:
-        print("The student ID does not exist in the records!")
 
-def popoutWindow1():
-
-    def backButton():
-        popout_window1.destroy()
-        showMainWindow()
-
-    def updateStudentID():
-
-        def backButton1():
-            popout_window2.destroy()
-            popout_window1.deiconify()
-
-        popout_window1.withdraw()
-        popout_window2 = tk.Toplevel(root)
-        popout_window2.title("Pop-out Window")
-        popout_window2.geometry("600x400")
-
-        label_updateStudID = tk.Label(popout_window2, text="Enter the student new ID", font=("Helvetica", 16))
-        label_updateStudID.place(relx=0.5, rely=0.20, anchor=tk.CENTER)
-
-        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
-        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
-        entry_updatelastName.place(relx=0.5, rely=0.40, anchor=tk.CENTER)
-
-        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
-        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
-
-    def updateStudentLN():
-
-        def backButton1():
-            popout_window2.destroy()
-            popout_window1.deiconify()
-
-        popout_window1.withdraw()
-        popout_window2 = tk.Toplevel(root)
-        popout_window2.title("Pop-out Window")
-        popout_window2.geometry("600x400")
-
-        label_updateStudLN = tk.Label(popout_window2, text="Enter the student new last name", font=("Helvetica", 16))
-        label_updateStudLN.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
-
-        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
-        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
-        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-
-        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
-        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
-
-    def updateStudentFN():
-
-        def backButton1():
-            popout_window2.destroy()
-            popout_window1.deiconify()
-
-        popout_window1.withdraw()
-        popout_window2 = tk.Toplevel(root)
-        popout_window2.title("Pop-out Window")
-        popout_window2.geometry("600x400")
-
-        label_updateStudFN = tk.Label(popout_window2, text="Enter the student new first name", font=("Helvetica", 16))
-        label_updateStudFN.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
-
-        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
-        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
-        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-
-        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
-        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
-
-    def updateStudentMN():
-
-        def backButton1():
-            popout_window2.destroy()
-            popout_window1.deiconify()
-
-        popout_window1.withdraw()
-        popout_window2 = tk.Toplevel(root)
-        popout_window2.title("Pop-out Window")
-        popout_window2.geometry("600x400")
-
-        label_updateStudMN = tk.Label(popout_window2, text="Enter the student new middle name", font=("Helvetica", 16))
-        label_updateStudMN.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
-
-        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
-        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
-        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-
-        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
-        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
-
-    def updateStudentSection():
-
-        def backButton1():
-            popout_window2.destroy()
-            popout_window1.deiconify()
-
-        popout_window1.withdraw()
-        popout_window2 = tk.Toplevel(root)
-        popout_window2.title("Pop-out Window")
-        popout_window2.geometry("600x400")
-
-        label_updateStudSec = tk.Label(popout_window2, text="Enter the student new section", font=("Helvetica", 16))
-        label_updateStudSec.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
-
-        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
-        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
-        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-
-        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
-        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
-
-    def updateStudentAddress():
-
-        def backButton1():
-            popout_window2.destroy()
-            popout_window1.deiconify()
-
-        popout_window1.withdraw()
-        popout_window2 = tk.Toplevel(root)
-        popout_window2.title("Pop-out Window")
-        popout_window2.geometry("600x400")
-
-        label_updateStudAdd = tk.Label(popout_window2, text="Enter the student new address", font=("Helvetica", 16))
-        label_updateStudAdd.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
-
-        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
-        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
-        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-
-        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
-        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
-
+def search():
     root.withdraw()
-    popout_window1 = tk.Toplevel(root)
-    popout_window1.title("Pop-out Window1")
-    popout_window1.geometry("600x500")
+    popout_window3 = tk.Toplevel(root)
+    popout_window3.title("Search Student")
+    popout_window3.geometry("400x200")
 
-    label_programTitle2 = tk.Label(popout_window1, text="Update Student Information Records", font=("Helvetica", 16))
-    label_programTitle2.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+    student_id_label = tk.Label(popout_window3, text="Enter the student ID:", font=("Helvetica", 12))
+    student_id_label.pack(pady=10)
 
-    button_updateStudentID = tk.Button(popout_window1, text="Update Student ID", command=updateStudentID, width=40, height=2)
-    button_updateStudentID.place(relx=0.5, rely=0.20, anchor=tk.CENTER)
+    student_id_entry = tk.Entry(popout_window3, width=30)
+    student_id_entry.pack(pady=5)
 
-    button_updateStudentLastName = tk.Button(popout_window1, text="Update Student Last Name", command=updateStudentLN, width=40, height=2)
-    button_updateStudentLastName.place(relx=0.5, rely=0.32, anchor=tk.CENTER)
+    def perform_search():
+        studentID = student_id_entry.get()
+        if not studentID:
+            messagebox.showerror("Error", "Please enter the student ID.")
+            return
+        found = searchStudentID(studentID)
+        if found:
+            messagebox.showinfo("Found", "Student ID found in the records.")
+            popout_window3.destroy()
 
-    button_updateStudentFirstName = tk.Button(popout_window1, text="Update Student First Name", command=updateStudentFN, width=40, height=2)
-    button_updateStudentFirstName.place(relx=0.5, rely=0.44, anchor=tk.CENTER)
+            def backButton():
+                popout_window1.destroy()
+                showMainWindow()
 
-    button_updateStudentMiddleName = tk.Button(popout_window1, text="Update Student Middle Name", command=updateStudentMN, width=40, height=2)
-    button_updateStudentMiddleName.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
+            def updateStudentID():
+                def submit_update():
+                    new_student_id = entry_new_student_id.get().strip()
+                    if not new_student_id:
+                        messagebox.showerror("Error", "Please enter the new student ID.")
+                        return
+                    with open("Students.txt", "r") as file:
+                        lines = file.readlines()
+                        file.seek(0)
+                        for i, line in enumerate(lines):
+                            data = line.strip().split(',')
+                            if data[0] == encryptData(studentID):
+                                data[0] = encryptData(new_student_id)
+                                lines[i] = ','.join(data) + '\n'
+                                with open("Students.txt", "w+") as file:
+                                    file.writelines(lines)
+                                break
+                        else:
+                            messagebox.showerror("Error", "Student ID not found.")
+                            return
+                        messagebox.showinfo("Success", "Student ID updated successfully.")
+                        popout_window.destroy()
 
-    button_updateStudentSection = tk.Button(popout_window1, text="Update Student Section", command=updateStudentSection, width=40, height=2)
-    button_updateStudentSection.place(relx=0.5, rely=0.68, anchor=tk.CENTER)
+                popout_window = tk.Toplevel(root)
+                popout_window.title("Update Student ID")
+                popout_window.geometry("400x200")
 
-    button_updateStudentAddress = tk.Button(popout_window1, text="Update Student Address", command=updateStudentAddress, width=40, height=2)
-    button_updateStudentAddress.place(relx=0.5, rely=0.80, anchor=tk.CENTER)
+                label_new_student_id = tk.Label(popout_window, text="Enter the new student ID:", font=("Helvetica", 12))
+                label_new_student_id.pack(pady=10)
 
-    button_backButton = tk.Button(popout_window1, text="Back", command=backButton, width=40, height=2)
-    button_backButton.place(relx=0.5, rely=0.92, anchor=tk.CENTER)
+                entry_new_student_id = tk.Entry(popout_window, width=30)
+                entry_new_student_id.pack(pady=5)
+
+                button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
+                button_submit_update.pack(pady=10)
+
+            def updateStudentLN():
+
+                def submit_update():
+                    new_student_LN = entry_new_last_name.get().strip()
+                    if not new_student_LN:
+                        messagebox.showerror("Error", "Please enter the new Last Name.")
+                        return
+                    with open("Students.txt", "r") as file:
+                        lines = file.readlines()
+                        file.seek(0)
+                        for i, line in enumerate(lines):
+                            data = line.strip().split(',')
+                            if data[0] == encryptData(studentID):
+                                data[1] = encryptData(new_student_LN)
+                                lines[i] = ','.join(data) + '\n'
+                                with open("Students.txt", "w+") as file:
+                                    file.writelines(lines)
+                                break
+                        else:
+                            messagebox.showerror("Error", "Last Name not found.")
+                            return
+                        messagebox.showinfo("Success", "Last Name updated successfully.")
+                        popout_window.destroy()
+
+                popout_window = tk.Toplevel(root)
+                popout_window.title("Update Last Name")
+                popout_window.geometry("400x200")
+
+                label_new_student_LN = tk.Label(popout_window, text="Enter the new Last Name:", font=("Helvetica", 12))
+                label_new_student_LN.pack(pady=10)
+
+                entry_new_last_name = tk.Entry(popout_window, width=30)
+                entry_new_last_name.pack(pady=5)
+
+                button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
+                button_submit_update.pack(pady=10)
+            
+
+            def updateStudentFN():
+
+                def submit_update():
+                    new_student_FN = entry_new_first_name.get()
+                    if not new_student_FN:
+                        messagebox.showerror("Error", "Please enter the new First Name.")
+                        return
+                    with open("Students.txt", "r") as file:
+                        lines = file.readlines()
+                        file.seek(0)
+                        for i, line in enumerate(lines):
+                            data = line.strip().split(',')
+                            if data[0] == encryptData(studentID):
+                                data[2] = encryptData(new_student_FN)
+                                lines[i] = ','.join(data) + '\n'
+                                with open("Students.txt", "w+") as file:
+                                    file.writelines(lines)
+                                break
+                        else:
+                            messagebox.showerror("Error", "First Name not found.")
+                            return
+                        messagebox.showinfo("Success", "First Name updated successfully.")
+                        popout_window.destroy()
+
+                popout_window = tk.Toplevel(root)
+                popout_window.title("Update First Name")
+                popout_window.geometry("400x200")
+
+                label_new_student_FN = tk.Label(popout_window, text="Enter the new First Name:", font=("Helvetica", 12))
+                label_new_student_FN.pack(pady=10)
+
+                entry_new_first_name = tk.Entry(popout_window, width=30)
+                entry_new_first_name.pack(pady=5)
+
+                button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
+                button_submit_update.pack(pady=10)
+
+            def updateStudentMN():
+
+                def submit_update():
+                    new_student_MN = entry_new_middle_name.get()
+                    if not new_student_MN:
+                        messagebox.showerror("Error", "Please enter the new Middle Name.")
+                        return
+                    with open("Students.txt", "r") as file:
+                        lines = file.readlines()
+                        file.seek(0)
+                        for i, line in enumerate(lines):
+                            data = line.strip().split(',')
+                            if data[0] == encryptData(studentID):
+                                data[3] = encryptData(new_student_MN)
+                                lines[i] = ','.join(data) + '\n'
+                                with open("Students.txt", "w+") as file:
+                                    file.writelines(lines)
+                                break
+                        else:
+                            messagebox.showerror("Error", "Middle Name not found.")
+                            return
+                        messagebox.showinfo("Success", "Middle Name updated successfully.")
+                        popout_window.destroy()
+
+                popout_window = tk.Toplevel(root)
+                popout_window.title("Update Middle Name")
+                popout_window.geometry("400x200")
+
+                label_new_student_MN = tk.Label(popout_window, text="Enter the new Middle Name:", font=("Helvetica", 12))
+                label_new_student_MN.pack(pady=10)
+
+                entry_new_middle_name = tk.Entry(popout_window, width=30)
+                entry_new_middle_name.pack(pady=5)
+
+                button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
+                button_submit_update.pack(pady=10)
+
+            def updateStudentSection():
+
+                def submit_update():
+                    new_student_sec = entry_new_section.get().strip()
+                    if not new_student_sec:
+                        messagebox.showerror("Error", "Please enter the new Section.")
+                        return
+                    with open("Students.txt", "r") as file:
+                        lines = file.readlines()
+                        file.seek(0)
+                        for i, line in enumerate(lines):
+                            data = line.strip().split(',')
+                            if data[0] == encryptData(studentID):
+                                data[4] = encryptData(new_student_sec)
+                                lines[i] = ','.join(data) + '\n'
+                                with open("Students.txt", "w+") as file:
+                                    file.writelines(lines)
+                                break
+                        else:
+                            messagebox.showerror("Error", "Section not found.")
+                            return
+                        messagebox.showinfo("Success", "Section updated successfully.")
+                        popout_window.destroy()
+
+                popout_window = tk.Toplevel(root)
+                popout_window.title("Update Section")
+                popout_window.geometry("400x200")
+
+                label_new_student_sec = tk.Label(popout_window, text="Enter the new Section:", font=("Helvetica", 12))
+                label_new_student_sec.pack(pady=10)
+
+                entry_new_section = tk.Entry(popout_window, width=30)
+                entry_new_section.pack(pady=5)
+
+                button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
+                button_submit_update.pack(pady=10)
+
+            def updateStudentAddress():
+
+                def submit_update():
+                    new_student_adrs = entry_new_address.get()
+                    if not new_student_adrs:
+                        messagebox.showerror("Error", "Please enter the new Address.")
+                        return
+                    with open("Students.txt", "r") as file:
+                        lines = file.readlines()
+                        file.seek(0)
+                        for i, line in enumerate(lines):
+                            data = line.strip().split(',')
+                            if data[0] == encryptData(studentID):
+                                data[5] = encryptData(new_student_adrs)
+                                lines[i] = ','.join(data) + '\n'
+                                with open("Students.txt", "w+") as file:
+                                    file.writelines(lines)
+                                break
+                        else:
+                            messagebox.showerror("Error", "Address not found.")
+                            return
+                        messagebox.showinfo("Success", "Address updated successfully.")
+                        popout_window.destroy()
+
+                popout_window = tk.Toplevel(root)
+                popout_window.title("Update Address")
+                popout_window.geometry("400x200")
+
+                label_new_student_adrs = tk.Label(popout_window, text="Enter the new Address:", font=("Helvetica", 12))
+                label_new_student_adrs.pack(pady=10)
+
+                entry_new_address = tk.Entry(popout_window, width=30)
+                entry_new_address.pack(pady=5)
+
+                button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
+                button_submit_update.pack(pady=10)
+
+            root.withdraw()
+            popout_window1 = tk.Toplevel(root)
+            popout_window1.title("Pop-out Window1")
+            popout_window1.geometry("600x500")
+
+            label_programTitle2 = tk.Label(popout_window1, text="Update Student Information Records", font=("Helvetica", 16))
+            label_programTitle2.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+            button_updateStudentID = tk.Button(popout_window1, text="Update Student ID", command=updateStudentID, width=40, height=2)
+            button_updateStudentID.place(relx=0.5, rely=0.20, anchor=tk.CENTER)
+
+            button_updateStudentLastName = tk.Button(popout_window1, text="Update Student Last Name", command=updateStudentLN, width=40, height=2)
+            button_updateStudentLastName.place(relx=0.5, rely=0.32, anchor=tk.CENTER)
+
+            button_updateStudentFirstName = tk.Button(popout_window1, text="Update Student First Name", command=updateStudentFN, width=40, height=2)
+            button_updateStudentFirstName.place(relx=0.5, rely=0.44, anchor=tk.CENTER)
+
+            button_updateStudentMiddleName = tk.Button(popout_window1, text="Update Student Middle Name", command=updateStudentMN, width=40, height=2)
+            button_updateStudentMiddleName.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
+
+            button_updateStudentSection = tk.Button(popout_window1, text="Update Student Section", command=updateStudentSection, width=40, height=2)
+            button_updateStudentSection.place(relx=0.5, rely=0.68, anchor=tk.CENTER)
+
+            button_updateStudentAddress = tk.Button(popout_window1, text="Update Student Address", command=updateStudentAddress, width=40, height=2)
+            button_updateStudentAddress.place(relx=0.5, rely=0.80, anchor=tk.CENTER)
+
+            button_backButton = tk.Button(popout_window1, text="Back", command=backButton, width=40, height=2)
+            button_backButton.place(relx=0.5, rely=0.92, anchor=tk.CENTER)
+        else:
+            messagebox.showinfo("Not Found", "Student ID not found in the records.")
+
+    search_button = tk.Button(popout_window3, text="Search", command=perform_search)
+    search_button.pack(pady=10)
+
+    back_button = tk.Button(popout_window3, text="Back", command=popout_window3.destroy)
+    back_button.pack(pady=10)
+
+    popout_window3.mainloop()
 
 def updateStudentData():
     pass
 
-button_editData = tk.Button(root, text="Update Student Data", command=popoutWindow1, width=20, height=2)
+button_editData = tk.Button(root, text="Update Student Data", command=search, width=20, height=2)
 button_editData.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
 
 def exit():
