@@ -143,7 +143,7 @@ def searchStudentID(studentID):
                 return True
         return False
 
-def updateStudentData():
+def updateStudentData1():
     studentID = str(input("Enter the student ID: "))
     
     if searchStudentID(studentID):
@@ -241,7 +241,171 @@ def updateStudentData():
     else:
         print("The student ID does not exist in the records!")
 
-button_editData = tk.Button(root, text="Update Student Data", command=updateStudentData, width=20, height=2)
+def popoutWindow1():
+
+    def backButton():
+        popout_window1.destroy()
+        showMainWindow()
+
+    def updateStudentID():
+
+        def backButton1():
+            popout_window2.destroy()
+            popout_window1.deiconify()
+
+        popout_window1.withdraw()
+        popout_window2 = tk.Toplevel(root)
+        popout_window2.title("Pop-out Window")
+        popout_window2.geometry("600x400")
+
+        label_updateStudID = tk.Label(popout_window2, text="Enter the student new ID", font=("Helvetica", 16))
+        label_updateStudID.place(relx=0.5, rely=0.20, anchor=tk.CENTER)
+
+        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
+        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
+        entry_updatelastName.place(relx=0.5, rely=0.40, anchor=tk.CENTER)
+
+        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
+        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
+    def updateStudentLN():
+
+        def backButton1():
+            popout_window2.destroy()
+            popout_window1.deiconify()
+
+        popout_window1.withdraw()
+        popout_window2 = tk.Toplevel(root)
+        popout_window2.title("Pop-out Window")
+        popout_window2.geometry("600x400")
+
+        label_updateStudLN = tk.Label(popout_window2, text="Enter the student new last name", font=("Helvetica", 16))
+        label_updateStudLN.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
+        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
+        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
+        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
+    def updateStudentFN():
+
+        def backButton1():
+            popout_window2.destroy()
+            popout_window1.deiconify()
+
+        popout_window1.withdraw()
+        popout_window2 = tk.Toplevel(root)
+        popout_window2.title("Pop-out Window")
+        popout_window2.geometry("600x400")
+
+        label_updateStudFN = tk.Label(popout_window2, text="Enter the student new first name", font=("Helvetica", 16))
+        label_updateStudFN.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
+        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
+        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
+        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
+    def updateStudentMN():
+
+        def backButton1():
+            popout_window2.destroy()
+            popout_window1.deiconify()
+
+        popout_window1.withdraw()
+        popout_window2 = tk.Toplevel(root)
+        popout_window2.title("Pop-out Window")
+        popout_window2.geometry("600x400")
+
+        label_updateStudMN = tk.Label(popout_window2, text="Enter the student new middle name", font=("Helvetica", 16))
+        label_updateStudMN.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
+        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
+        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
+        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
+    def updateStudentSection():
+
+        def backButton1():
+            popout_window2.destroy()
+            popout_window1.deiconify()
+
+        popout_window1.withdraw()
+        popout_window2 = tk.Toplevel(root)
+        popout_window2.title("Pop-out Window")
+        popout_window2.geometry("600x400")
+
+        label_updateStudSec = tk.Label(popout_window2, text="Enter the student new section", font=("Helvetica", 16))
+        label_updateStudSec.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
+        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
+        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
+        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
+    def updateStudentAddress():
+
+        def backButton1():
+            popout_window2.destroy()
+            popout_window1.deiconify()
+
+        popout_window1.withdraw()
+        popout_window2 = tk.Toplevel(root)
+        popout_window2.title("Pop-out Window")
+        popout_window2.geometry("600x400")
+
+        label_updateStudAdd = tk.Label(popout_window2, text="Enter the student new address", font=("Helvetica", 16))
+        label_updateStudAdd.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+        entry_updatelastName = tk.Text(popout_window2, width=30, height=2)
+        entry_updatelastName.grid(row=1, column=1, padx=10, pady=10)
+        entry_updatelastName.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+
+        button_submitUpdate = tk.Button(popout_window2, text="Update Record", command=backButton1, width=20, height=2)
+        button_submitUpdate.place(relx=0.5, rely=0.55, anchor=tk.CENTER)
+
+    root.withdraw()
+    popout_window1 = tk.Toplevel(root)
+    popout_window1.title("Pop-out Window1")
+    popout_window1.geometry("600x500")
+
+    label_programTitle2 = tk.Label(popout_window1, text="Update Student Information Records", font=("Helvetica", 16))
+    label_programTitle2.place(relx=0.5, rely=0.10, anchor=tk.CENTER)
+
+    button_updateStudentID = tk.Button(popout_window1, text="Update Student ID", command=updateStudentID, width=40, height=2)
+    button_updateStudentID.place(relx=0.5, rely=0.20, anchor=tk.CENTER)
+
+    button_updateStudentLastName = tk.Button(popout_window1, text="Update Student Last Name", command=updateStudentLN, width=40, height=2)
+    button_updateStudentLastName.place(relx=0.5, rely=0.32, anchor=tk.CENTER)
+
+    button_updateStudentFirstName = tk.Button(popout_window1, text="Update Student First Name", command=updateStudentFN, width=40, height=2)
+    button_updateStudentFirstName.place(relx=0.5, rely=0.44, anchor=tk.CENTER)
+
+    button_updateStudentMiddleName = tk.Button(popout_window1, text="Update Student Middle Name", command=updateStudentMN, width=40, height=2)
+    button_updateStudentMiddleName.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
+
+    button_updateStudentSection = tk.Button(popout_window1, text="Update Student Section", command=updateStudentSection, width=40, height=2)
+    button_updateStudentSection.place(relx=0.5, rely=0.68, anchor=tk.CENTER)
+
+    button_updateStudentAddress = tk.Button(popout_window1, text="Update Student Address", command=updateStudentAddress, width=40, height=2)
+    button_updateStudentAddress.place(relx=0.5, rely=0.80, anchor=tk.CENTER)
+
+    button_backButton = tk.Button(popout_window1, text="Back", command=backButton, width=40, height=2)
+    button_backButton.place(relx=0.5, rely=0.92, anchor=tk.CENTER)
+
+def updateStudentData():
+    pass
+
+button_editData = tk.Button(root, text="Update Student Data", command=popoutWindow1, width=20, height=2)
 button_editData.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
 
 def exit():
