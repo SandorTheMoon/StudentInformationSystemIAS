@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 XYTQ16516869,Iwtivs,Emv}wl$\erhiv,Qsvxike,FWMW1RW17E,Wer$Erhviw
 XYTQ165177;4,Hierk,Etvmp$Ns},Pefevxmri,FWMW1RW17E,Psw$Erkipiw$Gepmjsvrme
 XYTQ1561789:,Pewx,Jmvwx,Qmhhpi,FWMW1RW17E,YWE
 XYTQ16516<<=,Gewxvs,Tex,F,FWMW17E,Fegssv
+=======
+QN,NQ,567,NQ,567,NQ
+NQ,567,NQ,567,NQ,567
+>>>>>>> b986c8a9cef5a116af5aef5dd9ce826868e912f1
