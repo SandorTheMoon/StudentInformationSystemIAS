@@ -50,19 +50,37 @@ def showMainWindow():
 
 def popoutWindow():
 
-    def submitData():
-        studentId = entry_studentID.get("1.0", "end-1c")
-        lastName = entry_lastName.get("1.0", "end-1c")
-        firstName = entry_firstName.get("1.0", "end-1c")
-        middleName = entry_middleName.get("1.0", "end-1c")
-        section = entry_section.get("1.0", "end-1c")
-        address = entry_address.get("1.0", "end-1c")
+    def submitData(studentId, lastName, firstName, middleName, section, address):
         student_data = [studentId, lastName, firstName, middleName, section, address]
         addStudentInfo(student_data)
         messagebox.showinfo("Success", "Student added successfully!")
 
         popout_window.destroy()
         showMainWindow()
+
+    def checkInformations():
+        studentId = entry_studentID.get("1.0", "end-1c")
+        lastName = entry_lastName.get("1.0", "end-1c")
+        firstName = entry_firstName.get("1.0", "end-1c")
+        middleName = entry_middleName.get("1.0", "end-1c")
+        section = entry_section.get("1.0", "end-1c")
+        address = entry_address.get("1.0", "end-1c")
+        
+        if not studentId or not lastName or not firstName or not middleName or not section or not address: 
+            messagebox.showerror("Error", "Please fill out all of the necessary informations!")
+        else:
+            # studentId = entry_studentID.get().strip()
+            with open("Students.txt", "r") as file:
+                for line in file:
+                    data = line.strip().split(',')
+                    if encryptData(studentId) == data[0]:
+                        messagebox.showerror("Error", "Student ID already exists!")
+                        return False
+                    elif encryptData(lastName) == data[1] and encryptData(firstName) == data[2] and encryptData(middleName) == data[3]:
+                        messagebox.showerror("Error", "The name of the student already exist under other student ID!")
+                        return False
+            submitData(studentId, lastName, firstName, middleName, section, address)
+
 
     root.withdraw()
     popout_window = tk.Toplevel(root)
@@ -111,7 +129,7 @@ def popoutWindow():
     entry_address.grid(row=5, column=1, padx=10, pady=10)
     entry_address.place(relx=0.5, rely=0.9, anchor=tk.CENTER)
 
-    submit_button = tk.Button(popout_window, text="Submit", command=submitData, width=20, height=2)
+    submit_button = tk.Button(popout_window, text="Submit", command=checkInformations, width=20, height=2)
     submit_button.grid(row=7, column=0, columnspan=2, padx=5, pady=5)
     submit_button.place(relx=0.5, rely=0.975, anchor=tk.CENTER)
 
@@ -143,18 +161,21 @@ def searchStudentID(studentID):
                 return True
         return False
 
-
 def search():
     root.withdraw()
     popout_window3 = tk.Toplevel(root)
     popout_window3.title("Search Student")
-    popout_window3.geometry("400x200")
+    popout_window3.geometry("600x350")
 
-    student_id_label = tk.Label(popout_window3, text="Enter the student ID:", font=("Helvetica", 12))
-    student_id_label.pack(pady=10)
+    student_id_label = tk.Label(popout_window3, text="Enter the student ID", font=("Helvetica", 12), width=40)
+    student_id_label.place(relx=0.5, rely=0.20, anchor=tk.CENTER)
 
-    student_id_entry = tk.Entry(popout_window3, width=30)
-    student_id_entry.pack(pady=5)
+    student_id_entry = tk.Entry(popout_window3, width=40)
+    student_id_entry.place(relx=0.5, rely=0.35, anchor=tk.CENTER)
+
+    def backButton():
+        popout_window3.destroy()
+        showMainWindow()
 
     def perform_search():
         studentID = student_id_entry.get()
@@ -198,13 +219,14 @@ def search():
                 popout_window.geometry("400x200")
 
                 label_new_student_id = tk.Label(popout_window, text="Enter the new student ID:", font=("Helvetica", 12))
-                label_new_student_id.pack(pady=10)
+                label_new_student_id.grid(row=2, column=0, padx=10, pady=10)
 
                 entry_new_student_id = tk.Entry(popout_window, width=30)
-                entry_new_student_id.pack(pady=5)
+                entry_new_student_id.grid(pady=5)
 
                 button_submit_update = tk.Button(popout_window, text="Submit", command=submit_update)
-                button_submit_update.pack(pady=10)
+                button_submit_update.grid(pady=10)
+
 
             def updateStudentLN():
 
@@ -423,16 +445,13 @@ def search():
         else:
             messagebox.showinfo("Not Found", "Student ID not found in the records.")
 
-    search_button = tk.Button(popout_window3, text="Search", command=perform_search)
-    search_button.pack(pady=10)
+    search_button = tk.Button(popout_window3, text="Search", command=perform_search, width=20, height=2)
+    search_button.place(relx=0.5, rely=0.50, anchor=tk.CENTER)
 
-    back_button = tk.Button(popout_window3, text="Back", command=popout_window3.destroy)
-    back_button.pack(pady=10)
+    back_button = tk.Button(popout_window3, text="Back", command=backButton, width=20, height=2)
+    back_button.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
 
     popout_window3.mainloop()
-
-def updateStudentData():
-    pass
 
 button_editData = tk.Button(root, text="Update Student Data", command=search, width=20, height=2)
 button_editData.place(relx=0.5, rely=0.65, anchor=tk.CENTER)
