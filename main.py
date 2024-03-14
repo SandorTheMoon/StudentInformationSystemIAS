@@ -19,17 +19,17 @@ def decryptData(encryptedData):
     return ''.join(chr(ord(letter) - key) for letter in encryptedData)
 
 def addStudentInfo(student_data):
-    with open("Students.txt", "a") as file:
+    with open(filename, "a") as file:
         encrypted_data = [encryptData(data) for data in student_data]
         file.write(','.join(encrypted_data) + '\n')
 
 def deleteStudentInfo(studID):
     found = False
 
-    with open("Students.txt", "r") as file:
+    with open(filename, "r") as file:
         lines = file.readlines()
 
-    with open("Students.txt", "w") as file:
+    with open(filename, "w") as file:
         for line in lines:
             keyValue = line.strip().split(",")
 
@@ -46,7 +46,7 @@ def deleteStudentInfo(studID):
 def displayStudentInfo(studID):
     found = False
 
-    with open("Students.txt", "r") as file:
+    with open(filename, "r") as file:
         for line in file:
             keyValue = line.strip().split(",")
 
@@ -63,6 +63,18 @@ def displayStudentInfo(studID):
         if not found:
             messagebox.showinfo("Error", "Student not found or invalid input.")
 
+
+#===== File Encryption and Initialization =====#
+def encryptFileName():
+    file = encryptData("Students")
+    return file
+
+filename = encryptFileName() + ".txt"
+createFile = open(filename, "w")
+createFile.close()
+
+
+#========== TO SHOW MAIN MENU WINDOW ==========#
 def showMainWindow():
     root.deiconify()
 
@@ -82,7 +94,7 @@ def AddStudent():
             messagebox.showerror("Error", "Please fill out all of the necessary informations!")
 
         else:
-            with open("Students.txt", "r") as file:
+            with open(filename, "r") as file:
                 for line in file:
                     data = line.strip().split(',')
 
@@ -174,7 +186,7 @@ def UpdateStudent():
         showMainWindow()
 
     def searchStudentID(studentID):
-        with open("Students.txt", "r") as file:
+        with open(filename, "r") as file:
             for line in file:
                 keyValue = line.strip().split(",")
                 
@@ -188,7 +200,7 @@ def UpdateStudent():
         found = searchStudentID(studentID)
 
         def submit_update(studentData, index):
-            with open("Students.txt", "r") as file:
+            with open(filename, "r") as file:
                 lines = file.readlines()
                 
                 for i, line in enumerate(lines):
@@ -198,7 +210,7 @@ def UpdateStudent():
                         data[index] = encryptData(studentData)
                         lines[i] = ','.join(data) + '\n'
 
-                        with open("Students.txt", "w+") as file:
+                        with open(filename, "w+") as file:
                             file.writelines(lines)
                         break
                 
@@ -226,6 +238,8 @@ def UpdateStudent():
                     else:
                         submit_update(new_student_ID, index)
                         popout_window.destroy()
+                        studentNewUpdate_window.destroy()
+                        showMainWindow()
 
                 popout_window = tk.Toplevel(root)
                 popout_window.title("Update Student ID")
