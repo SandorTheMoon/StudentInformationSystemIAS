@@ -70,7 +70,7 @@ def encryptFileName():
     return file
 
 filename = encryptFileName() + ".txt"
-createFile = open(filename, "w")
+createFile = open(filename, "a")
 createFile.close()
 
 
